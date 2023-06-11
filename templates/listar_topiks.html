@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Lista de Topiks</title>
+</head>
+<body>
+    <h1>Lista de Topiks</h1>
+
+    <table>
+        <tr>
+            <th>Horário</th>
+            <th>Motorista</th>
+            <th>Destino</th>
+            <th>Ações</th>
+        </tr>
+        {% for topik in topiks %}
+            <tr>
+                <td>{{ topik.horario }}</td>
+                <td>{{ topik.motorista }}</td>
+                <td>{{ topik.destino }}</td>
+                <td>
+                    <a href="{{ url_for('editar_topik', id=loop.index0) }}">Editar</a>
+                    <form action="{{ url_for('excluir_topik', id=loop.index0) }}" method="post" style="display: inline;">
+                        <button type="submit">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2><a href="{{ url_for('adicionar_topik') }}">Adicionar Topik</a></h2>
+</body>
+</html>
